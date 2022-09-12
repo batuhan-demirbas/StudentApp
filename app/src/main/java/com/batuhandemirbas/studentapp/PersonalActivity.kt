@@ -1,5 +1,6 @@
 package com.batuhandemirbas.studentapp
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,6 +22,10 @@ class PersonalActivity : AppCompatActivity() {
 
         val intent = intent
         val name = intent.getStringExtra("name")
+
+        val intentAverage = Intent(this, AverageActivity::class.java)
+        val intentLesson = Intent(this, LessonActivity::class.java)
+
         binding.textView.text = "Merhaba $name, lütfen hangi işlemi\nyapacağına karar ver."
 
         sharedPreferences = getSharedPreferences("package com.batuhandemirbas.studentapp", MODE_PRIVATE)
@@ -28,6 +33,19 @@ class PersonalActivity : AppCompatActivity() {
             sharedPreferences.edit().clear().apply()
             finish()
         }
+
+        // Dönem Dersleri
+        binding.buttonLesson.setOnClickListener {
+            startActivity(intentLesson)
+        }
+
+        // Ortalama Hesaplama
+        binding.buttonAverage.setOnClickListener {
+            startActivity(intentAverage)
+        }
+
+        // Yemekhane Listesi
+
 
     }
 
