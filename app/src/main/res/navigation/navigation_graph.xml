@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="com.batuhandemirbas.studentapp.LessonFragment"
+        android:label="fragment_lesson"
+        tools:layout="@layout/fragment_lesson" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.batuhandemirbas.studentapp.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_lessonFragment"
+            app:destination="@id/lessonFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_averageFragment"
+            app:destination="@id/averageFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_mealFragment"
+            app:destination="@id/mealFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/averageFragment"
+        android:name="com.batuhandemirbas.studentapp.AverageFragment"
+        android:label="fragment_average"
+        tools:layout="@layout/fragment_average" />
+    <fragment
+        android:id="@+id/mealFragment"
+        android:name="com.batuhandemirbas.studentapp.MealFragment"
+        android:label="fragment_meal"
+        tools:layout="@layout/fragment_meal" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.batuhandemirbas.studentapp.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
+</navigation>

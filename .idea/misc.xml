@@ -7,6 +7,10 @@
         <entry key="..\:/Project/StudentApp/app/src/main/res/layout/activity_lesson.xml" value="0.25" />
         <entry key="..\:/Project/StudentApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Project/StudentApp/app/src/main/res/layout/activity_personal.xml" value="0.4" />
+        <entry key="..\:/Project/StudentApp/app/src/main/res/layout/fragment_average.xml" value="0.25" />
+        <entry key="..\:/Project/StudentApp/app/src/main/res/layout/fragment_dashboard.xml" value="0.25" />
+        <entry key="..\:/Project/StudentApp/app/src/main/res/layout/fragment_lesson.xml" value="0.25" />
+        <entry key="..\:/Project/StudentApp/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Project/StudentApp/app/src/main/res/layout/list_lesson.xml" value="0.24895833333333334" />
       </map>
     </option>

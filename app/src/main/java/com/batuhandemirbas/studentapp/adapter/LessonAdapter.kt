@@ -10,7 +10,6 @@ import com.batuhandemirbas.studentapp.R
 import com.batuhandemirbas.studentapp.model.Lesson
 
 class LessonAdapter(
-    private val context: Context,
     private val lessonList: List<Lesson>) : RecyclerView.Adapter<LessonAdapter.LessonVH>() {
 
     class LessonVH(itemView: View): RecyclerView.ViewHolder(itemView) {

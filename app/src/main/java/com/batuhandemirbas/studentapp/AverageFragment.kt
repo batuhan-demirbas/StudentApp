@@ -1,20 +1,27 @@
 package com.batuhandemirbas.studentapp
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import com.batuhandemirbas.studentapp.databinding.ActivityAverageBinding
+import android.view.ViewGroup
+import com.batuhandemirbas.studentapp.databinding.FragmentAverageBinding
 
-class AverageActivity : AppCompatActivity() {
+class AverageFragment : Fragment() {
 
-    private lateinit var binding: ActivityAverageBinding
+    private var _binding: FragmentAverageBinding? = null
+    // This property is only valid between onCreateView and
+   // onDestroyView.
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAverageBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentAverageBinding.inflate(inflater, container, false)
         val view = binding.root
-        setContentView(view)
+
 
         var vize: Int
         var final: Int
@@ -36,5 +43,13 @@ class AverageActivity : AppCompatActivity() {
                 }
             }
         }
+        // Inflate the layout for this fragment
+
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
