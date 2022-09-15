@@ -1,6 +1,5 @@
 package com.batuhandemirbas.studentapp.model
 
-import androidx.annotation.StringRes
 
 data class Lesson(
     var name: String,

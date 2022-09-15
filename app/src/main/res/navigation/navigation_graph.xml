@@ -25,7 +25,7 @@
             android:id="@+id/action_dashboardFragment_to_mealFragment"
             app:destination="@id/mealFragment" />
         <argument
-            android:name="name"
+            android:name="number"
             app:argType="string" />
     </fragment>
     <fragment

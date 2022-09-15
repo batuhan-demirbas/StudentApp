@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.batuhandemirbas.studentapp.R
@@ -13,7 +14,10 @@ class LessonAdapter(
     private val lessonList: List<Lesson>) : RecyclerView.Adapter<LessonAdapter.LessonVH>() {
 
     class LessonVH(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val textView: TextView = itemView.findViewById(R.id.textViewLesson)
+        val lessonName: TextView = itemView.findViewById(R.id.lessonName)
+        val lessonCode: TextView = itemView.findViewById(R.id.lessonCode)
+        val lessonVize: Button = itemView.findViewById(R.id.lessonVize)
+        val lessonFinal: Button = itemView.findViewById(R.id.lessonFinal)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonVH {
@@ -23,7 +27,10 @@ class LessonAdapter(
 
     override fun onBindViewHolder(holder: LessonVH, position: Int) {
         val item = lessonList.get(position)
-        holder.textView.text = "${item.code}, ${item.name}, ${item.credit}, ${item.vize}, ${item.final}"
+        holder.lessonName.text = item.name
+        holder.lessonCode.text = item.code
+        holder.lessonVize.text = "Vize: ${item.vize.toString()}"
+        holder.lessonFinal.text = "Final: ${item.final.toString()}"
     }
 
     override fun getItemCount(): Int {
