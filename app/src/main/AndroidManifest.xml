@@ -13,18 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentApp"
         tools:targetApi="31">
-        <activity
-            android:name=".AverageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MealActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LessonActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PersonalActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -52,6 +52,13 @@ class LoginFragment : Fragment() {
                 Navigation.findNavController(it).navigate(action)
             }
         }
+
+        // Actions to be applied when the register TextView is pressed
+
+        binding.textViewRegister.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun onDestroyView() {
