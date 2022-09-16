@@ -26,24 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         // Returns log and toast message for activity lifecycle
         Log.d("MainActivity", "onCreate Called")
-        Toast.makeText(this, "Uygulama başlatıldı", Toast.LENGTH_SHORT).show()
-
-        // db
-        val db = DatabaseHelper(this)
-
-        // Gets the data repository in write mode
-        val dbWrite = db.writableDatabase
-
-        // Create a new map of values, where column names are the keys
-        val studentSource = StudentSource().loadStudents()
-        val values = ContentValues().apply {
-            put(TableContract.TableEntry.COLUMN_NUMBER, studentSource[0].number)
-            put(TableContract.TableEntry.COLUMN_NAME, studentSource[0].name)
-            put(TableContract.TableEntry.COLUMN_PASSWORD, studentSource[0].password)
-        }
-
-        // Insert the new row, returning the primary key value of the new row
-        val newRowId = dbWrite?.insert(TableContract.TableEntry.TABLE_NAME, null, values)
 
     }
 
