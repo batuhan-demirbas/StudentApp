@@ -26,7 +26,13 @@
             app:destination="@id/mealFragment" />
         <argument
             android:name="number"
+            app:argType="integer" />
+        <argument
+            android:name="name"
             app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/averageFragment"

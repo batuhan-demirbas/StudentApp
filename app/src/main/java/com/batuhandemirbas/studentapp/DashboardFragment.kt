@@ -30,12 +30,10 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
+            val name = DashboardFragmentArgs.fromBundle(it).name
             val number = DashboardFragmentArgs.fromBundle(it).number
-            if (number == "031811626") {
-                binding.textView.text = "Merhaba Batuhan, lütfen hangi işlemi\nyapacağına karar ver."
-            } else {
-                binding.textView.text = "Merhaba Kullanıcı, lütfen hangi işlemi\nyapacağına karar ver."
-            }
+            val password = DashboardFragmentArgs.fromBundle(it).password
+            binding.textView.text = "Merhaba $name,\nlütfen hangi işlemi yapacağına karar ver."
         }
 
         binding.buttonLesson.setOnClickListener {
