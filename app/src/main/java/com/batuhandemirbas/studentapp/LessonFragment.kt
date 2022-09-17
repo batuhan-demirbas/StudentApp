@@ -12,6 +12,7 @@ import com.batuhandemirbas.studentapp.databinding.FragmentLessonBinding
 
 class LessonFragment : Fragment() {
     private var _binding: FragmentLessonBinding? = null
+
     // This property is only valid between onCreateView and
 // onDestroyView.
     private val binding get() = _binding!!
@@ -19,7 +20,7 @@ class LessonFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLessonBinding.inflate(inflater, container, false)
         val view = binding.root

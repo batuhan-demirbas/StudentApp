@@ -11,9 +11,10 @@ import com.batuhandemirbas.studentapp.R
 import com.batuhandemirbas.studentapp.model.Lesson
 
 class LessonAdapter(
-    private val lessonList: List<Lesson>) : RecyclerView.Adapter<LessonAdapter.LessonVH>() {
+    private val lessonList: List<Lesson>
+) : RecyclerView.Adapter<LessonAdapter.LessonVH>() {
 
-    class LessonVH(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class LessonVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val lessonName: TextView = itemView.findViewById(R.id.lessonName)
         val lessonCode: TextView = itemView.findViewById(R.id.lessonCode)
         val lessonVize: Button = itemView.findViewById(R.id.lessonVize)
@@ -21,7 +22,8 @@ class LessonAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LessonVH {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_lesson, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.list_lesson, parent, false)
         return LessonVH(itemView)
     }
 

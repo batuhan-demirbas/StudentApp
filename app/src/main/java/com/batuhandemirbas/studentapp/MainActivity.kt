@@ -1,13 +1,8 @@
 package com.batuhandemirbas.studentapp
 
-import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import com.batuhandemirbas.studentapp.data.DatabaseHelper
-import com.batuhandemirbas.studentapp.data.StudentSource
-import com.batuhandemirbas.studentapp.data.TableContract
 import com.batuhandemirbas.studentapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
