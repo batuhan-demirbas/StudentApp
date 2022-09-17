@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         // Shows activity_main.xml on the screen.
         setContentView(view)
 
-        // Returns log and toast message for activity lifecycle
+        // Log message for activity lifecycle
         Log.d("MainActivity", "onCreate Called")
 
     }

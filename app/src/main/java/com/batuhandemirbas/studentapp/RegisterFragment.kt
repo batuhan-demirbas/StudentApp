@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.data.StudentSource
 import com.batuhandemirbas.studentapp.data.TableContract
 import com.batuhandemirbas.studentapp.databinding.FragmentRegisterBinding
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterFragment : Fragment() {
 
@@ -59,15 +61,17 @@ class RegisterFragment : Fragment() {
                 // Insert the new row, returning the primary key value of the new row
                 val newRowId = dbWrite?.insert(TableContract.TableEntry.TABLE_NAME, null, values)
 
-                // Toast Message
-                Toast.makeText(context, "Başarıyla kayıt oldunuz.", Toast.LENGTH_SHORT).show()
+                // Snackbar message
+                Snackbar.make(it, "Başarıyla kayıt oldunuz.", Snackbar.LENGTH_SHORT).show()
+                binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
 
                 // Action to LoginFragment
                 val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                 Navigation.findNavController(it).navigate(action)
             } else {
-                // not checked toast message
-                Toast.makeText(context, "Lütfen sözleşmeyi onaylayınız", Toast.LENGTH_SHORT).show()
+                // Not cheked snackbar message
+                Snackbar.make(it, "Lütfen sözleşmeyi onaylayınız.", Snackbar.LENGTH_SHORT).show()
+                binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
             }
         }
     }

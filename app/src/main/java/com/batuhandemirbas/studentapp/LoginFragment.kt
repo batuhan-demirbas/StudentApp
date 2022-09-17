@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.batuhandemirbas.studentapp.data.StudentSource
 import com.batuhandemirbas.studentapp.data.TableContract
 import com.batuhandemirbas.studentapp.databinding.FragmentLoginBinding
 import com.batuhandemirbas.studentapp.model.Student
+import com.google.android.material.snackbar.Snackbar
 
 
 class LoginFragment : Fragment() {
@@ -94,10 +96,9 @@ class LoginFragment : Fragment() {
             }
 
             if (!flag) {
-                Toast.makeText(
-                    activity,
-                    "Numara ve şifre eşleşmiyor. Lütfen tekrar deneyiniz.", Toast.LENGTH_SHORT
-                ).show()
+                // Snackbar message
+                Snackbar.make(binding.buttonLogin, "Numara ve şifre eşleşmiyor.", Snackbar.LENGTH_SHORT).show()
+                binding.passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
             }
 
         }
