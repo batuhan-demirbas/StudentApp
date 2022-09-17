@@ -3,7 +3,9 @@ package com.batuhandemirbas.studentapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.batuhandemirbas.studentapp.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         // Log message for activity lifecycle
         Log.d("MainActivity", "onCreate Called")
-
     }
 
     override fun onStart() {

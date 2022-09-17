@@ -39,24 +39,34 @@ class LoginFragment : Fragment() {
             val number = binding.numberEditText.text.toString().toInt()
             val password = binding.passwordEditText.text.toString().toInt()
 
-            // EditText'e girilen öğrenci numarasına göre öğrencinin verileri
-            // database üzerinden çekme
-            val student = db.readDataStudent(number, context)
+            try {
+                // EditText'e girilen öğrenci numarasına göre öğrencinin verileri
+                // database üzerinden çekme
+                val student = db.readDataStudent(number, context)
 
-            // Öğrenci bilgileri ile girilen şifre doğru ise yapılacak işlemler
-            if (number == student.number && password == student.password) {
-                val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment(number)
-                Navigation.findNavController(buttonLoginView).navigate(action)
-            } else {
+                // Öğrenci bilgileri ile girilen şifre doğru ise yapılacak işlemler
+                if (number == student.number && password == student.password) {
+                    val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment(number)
+                    Navigation.findNavController(buttonLoginView).navigate(action)
+                } else {
+                    // Snackbar message
+                    Snackbar.make(
+                        binding.buttonLogin,
+                        "Numara ve şifre eşleşmiyor.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                    binding.passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
                 // Snackbar message
                 Snackbar.make(
                     binding.buttonLogin,
-                    "Numara ve şifre eşleşmiyor.",
+                    "Kayıtlı kullanıcı bulunamadı.",
                     Snackbar.LENGTH_SHORT
                 ).show()
                 binding.passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
             }
-
         }
 
         // Actions to be applied when the register TextView is pressed
