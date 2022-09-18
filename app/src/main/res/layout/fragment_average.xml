@@ -7,29 +7,54 @@
     android:layout_height="match_parent"
     tools:context=".AverageFragment">
 
-    <EditText
-        android:id="@+id/editTextVize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
-        android:ems="10"
-        android:hint="Vize notunuzu giriniz"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/vizeEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="180dp"
+        android:hint="Vize"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vizeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/finalEditTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:hint="Final"
+        app:layout_constraintStart_toStartOf="@+id/vizeEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@+id/vizeEditTextLayout"
+        app:layout_constraintEnd_toEndOf="@+id/vizeEditTextLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/finalEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/buttonCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="320dp"
+        android:layout_height="54dp"
         android:text="Hesapla"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextFinal" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/finalEditTextLayout"
+        app:layout_constraintStart_toStartOf="@id/finalEditTextLayout"
+        app:layout_constraintTop_toBottomOf="@id/finalEditTextLayout" />
 
     <TextView
         android:id="@+id/textViewResult"
@@ -37,24 +62,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Sonuç:"
+        tools:text="Sonuç: 33"
+        tools:visibility="visible"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCalculate"
+        app:layout_constraintStart_toStartOf="@id/buttonCalculate"
         app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
 
-    <EditText
-        android:id="@+id/editTextFinal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Final notunuzu giriniz"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextVize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

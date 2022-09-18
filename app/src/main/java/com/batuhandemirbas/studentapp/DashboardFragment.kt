@@ -1,5 +1,6 @@
 package com.batuhandemirbas.studentapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,16 +37,25 @@ class DashboardFragment : Fragment() {
                 "Merhaba ${student.name},\nlütfen hangi işlemi yapacağına karar ver."
         }
 
+
+        // Derslerim butonuna tıklandığında yapılacaklar
         binding.buttonLesson.setOnClickListener {
             val actionToLessonFragment =
                 DashboardFragmentDirections.actionDashboardFragmentToLessonFragment()
             Navigation.findNavController(it).navigate(actionToLessonFragment)
         }
 
+        // Ortalama butonuna basıldığında yapılacaklar
         binding.buttonAverage.setOnClickListener {
             val actionToAverageFragment =
                 DashboardFragmentDirections.actionDashboardFragmentToAverageFragment()
             Navigation.findNavController(it).navigate(actionToAverageFragment)
+        }
+
+        // Kampüsü gör butonuna basıldığında yapılacaklar
+        binding.buttonMap.setOnClickListener {
+            val actionToMapFragment = DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
+            Navigation.findNavController(it).navigate(actionToMapFragment)
         }
     }
 

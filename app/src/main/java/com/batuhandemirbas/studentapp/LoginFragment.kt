@@ -74,6 +74,13 @@ class LoginFragment : Fragment() {
             val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             Navigation.findNavController(it).navigate(action)
         }
+
+        // Actions to be applied when the forgot password TextView is pressed
+        binding.textViewForgotPassword.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
+
     }
 
     override fun onDestroyView() {

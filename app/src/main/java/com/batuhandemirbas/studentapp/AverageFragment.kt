@@ -29,8 +29,8 @@ class AverageFragment : Fragment() {
         var average: Double
 
         binding.buttonCalculate.setOnClickListener {
-            vize = binding.editTextVize.text.toString().toInt()
-            final = binding.editTextFinal.text.toString().toInt()
+            vize = binding.vizeEditText.text.toString().toInt()
+            final = binding.finalEditText.text.toString().toInt()
             average = vize * 0.4 + final * 0.6
 
             binding.textViewResult.apply {

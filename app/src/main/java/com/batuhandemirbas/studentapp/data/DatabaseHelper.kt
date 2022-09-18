@@ -111,4 +111,23 @@ class DatabaseHelper(context: Context?) :
         return students[0]
 
     }
+
+    fun updateData (number: Int, name: String, newPassword: Int, context: Context?) {
+        val db = DatabaseHelper(context)
+        val dbWrite = db.writableDatabase
+
+        // New value for one column
+        val values = ContentValues().apply {
+            put(TableContract.TableEntry.COLUMN_PASSWORD, newPassword)
+        }
+
+// Which row to update, based on the title
+        val selection = "${TableContract.TableEntry.COLUMN_NUMBER} LIKE ?"
+        val selectionArgs = arrayOf(number.toString())
+        val count = dbWrite.update(
+            TableContract.TableEntry.TABLE_NAME,
+            values,
+            selection,
+            selectionArgs)
+    }
 }
