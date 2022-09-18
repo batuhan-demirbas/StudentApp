@@ -1,7 +1,7 @@
-# StudentApp
+### StudentApp
 🏫 A school application where students can calculate GPA, see exam results and meal menu.
 
-# What I learned
+### What I learned
 * Activity Lifecycle
 * Jetpack Navigation
 * View Binding
