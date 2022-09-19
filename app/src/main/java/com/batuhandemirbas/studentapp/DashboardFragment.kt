@@ -52,9 +52,17 @@ class DashboardFragment : Fragment() {
             Navigation.findNavController(it).navigate(actionToAverageFragment)
         }
 
+        // Yemekhane butonuna basıldığında yapılacaklar
+        binding.buttonMeal.setOnClickListener {
+            val actionToMealFragment =
+                DashboardFragmentDirections.actionDashboardFragmentToMealFragment()
+            Navigation.findNavController(it).navigate(actionToMealFragment)
+        }
+
         // Kampüsü gör butonuna basıldığında yapılacaklar
         binding.buttonMap.setOnClickListener {
-            val actionToMapFragment = DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
+            val actionToMapFragment =
+                DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
             Navigation.findNavController(it).navigate(actionToMapFragment)
         }
     }
