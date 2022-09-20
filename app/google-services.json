@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "964193343974",
+    "project_id": "studentapp-8cf9b",
+    "storage_bucket": "studentapp-8cf9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964193343974:android:e2340cada3e2f25d495e27",
+        "android_client_info": {
+          "package_name": "com.batuhandemirbas.studentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964193343974-j7irjbnjuj9l9nggbr4ifuslpoidgeg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBT2GZdrfBLvYZbTDIgglGVWY7DnNPGUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964193343974-j7irjbnjuj9l9nggbr4ifuslpoidgeg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
