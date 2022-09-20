@@ -1,23 +1,33 @@
 package com.batuhandemirbas.studentapp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
 
+    private lateinit var auth: FirebaseAuth
+
     // This property is only valid between onCreateView and
-// onDestroyView.
+    // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +41,29 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Connect database
-        val db = DatabaseHelper(context)
+        // Buttons
+        with(binding) {
+            // Login
+            buttonLogin.setOnClickListener { view ->
+                val email = binding.numberEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
+                signIn(email, password, view)
+            }
 
-        // Actions to be applied when the login button is pressed
-        binding.buttonLogin.setOnClickListener { buttonLoginView ->
-            val number = binding.numberEditText.text.toString().toInt()
-            val password = binding.passwordEditText.text.toString().toInt()
+            // Register
+            textViewRegister.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+                Navigation.findNavController(it).navigate(action)
+            }
 
+            // Forgot
+            textViewForgotPassword.setOnClickListener {
+                val action = LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
+                Navigation.findNavController(it).navigate(action)
+            }
+
+
+            /*
             try {
                 // EditText'e girilen öğrenci numarasına göre öğrencinin verileri
                 // database üzerinden çekme
@@ -66,21 +91,29 @@ class LoginFragment : Fragment() {
                     Snackbar.LENGTH_SHORT
                 ).show()
                 binding.passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
+            } */
+        }
+    }
+
+    private fun signIn(email: String, password: String, view: View) {
+
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val action =
+                        LoginFragmentDirections.actionLoginFragmentToDashboardFragment(password.toInt())
+                    Navigation.findNavController(view).navigate(action)
+                    val user = auth.currentUser
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Snackbar.make(
+                        binding.buttonLogin,
+                        "Numara ve şifre eşleşmiyor.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
-
-        // Actions to be applied when the register TextView is pressed
-        binding.textViewRegister.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
-        // Actions to be applied when the forgot password TextView is pressed
-        binding.textViewForgotPassword.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
-            Navigation.findNavController(it).navigate(action)
-        }
-
     }
 
     override fun onDestroyView() {

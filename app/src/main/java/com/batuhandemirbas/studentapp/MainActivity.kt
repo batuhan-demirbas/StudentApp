@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import com.batuhandemirbas.studentapp.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
