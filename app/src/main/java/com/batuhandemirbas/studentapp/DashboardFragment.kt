@@ -29,13 +29,14 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*
         arguments?.let {
             val number = DashboardFragmentArgs.fromBundle(it).number
             val db = DatabaseHelper(context)
             val student = db.readDataStudent(number, context)
             binding.textView.text =
                 "Merhaba ${student.name},\nlütfen hangi işlemi yapacağına karar ver."
-        }
+        } */
 
 
         // Derslerim butonuna tıklandığında yapılacaklar

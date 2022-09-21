@@ -1,9 +1,11 @@
 package com.batuhandemirbas.studentapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.databinding.FragmentLoginBinding
@@ -96,22 +98,19 @@ class LoginFragment : Fragment() {
     }
 
     private fun signIn(email: String, password: String, view: View) {
-
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(requireActivity()) { task ->
+            .addOnCompleteListener(requireActivity()){ task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    val action =
-                        LoginFragmentDirections.actionLoginFragmentToDashboardFragment(password.toInt())
-                    Navigation.findNavController(view).navigate(action)
+                    Log.d("FirebaseAuth", "signInWithEmail:success")
                     val user = auth.currentUser
+                    val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment(31811626)
+                    Navigation.findNavController(view).navigate(action)
                 } else {
                     // If sign in fails, display a message to the user.
-                    Snackbar.make(
-                        binding.buttonLogin,
-                        "Numara ve şifre eşleşmiyor.",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    Log.w("FirebaseAuth", "signInWithEmail:failure", task.exception)
+                    Toast.makeText(context, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
     }
