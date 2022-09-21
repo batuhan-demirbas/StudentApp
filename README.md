@@ -7,6 +7,7 @@
 * View Binding
 * Recycler View
 * Material Design
+* Firebase
 * SQLite
 * Google Map API
 
