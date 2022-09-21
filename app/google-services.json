@@ -7,12 +7,20 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:964193343974:android:e2340cada3e2f25d495e27",
+        "mobilesdk_app_id": "1:964193343974:android:2aa738270db3b56c495e27",
         "android_client_info": {
           "package_name": "com.batuhandemirbas.studentapp"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "964193343974-gg758i79eh4dhv8cckl5gklfbhrr6ugg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.batuhandemirbas.studentapp",
+            "certificate_hash": "da7191941d2516076f7d305264c30c9fe16ccaf8"
+          }
+        },
         {
           "client_id": "964193343974-j7irjbnjuj9l9nggbr4ifuslpoidgeg6.apps.googleusercontent.com",
           "client_type": 3

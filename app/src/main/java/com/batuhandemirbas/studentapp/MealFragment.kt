@@ -1,15 +1,14 @@
 package com.batuhandemirbas.studentapp
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.batuhandemirbas.studentapp.data.DatabaseHelper
-import com.batuhandemirbas.studentapp.data.MealContract
 import com.batuhandemirbas.studentapp.databinding.FragmentMealBinding
-import com.batuhandemirbas.studentapp.model.Meal
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MealFragment : Fragment() {
 
@@ -30,16 +29,18 @@ class MealFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val db = DatabaseHelper(context)
+        val db = Firebase.firestore
 
-        // db.writeMealData(context)
-
-        val meals: MutableList<Meal> = db.readDataMeals(context)
-
-        val meal1 = meals[0]
-        val meal2 = meals[1]
-        binding.meal1.text = "${meal1.date} ${meal1.main} ${meal1.snack} "
-        binding.meal2.text = "${meal2.date} ${meal2.main} ${meal2.snack} "
+        db.collection("meals")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    binding.meal1.text = document.data.toString()
+                }
+            }
+            .addOnFailureListener { exception ->
+                Snackbar.make(view, "Başarısız", Snackbar.LENGTH_SHORT).show()
+            }
     }
 
     override fun onDestroyView() {
