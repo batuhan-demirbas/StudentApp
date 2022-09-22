@@ -1,6 +1,7 @@
 package com.batuhandemirbas.studentapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.databinding.FragmentForgotPasswordBinding
 import com.batuhandemirbas.studentapp.model.Student
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ForgotPasswordFragment : Fragment() {
 
@@ -33,46 +36,34 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        val db = DatabaseHelper(context)
-
         binding.buttonChangePassword.setOnClickListener {
-            try {
-                val number = binding.numberEditTextFromForgot.text.toString().toInt()
-                val name = binding.nameEditTextFromForgot.text.toString()
-                val newPassword = binding.newPasswordEditTextFromForgot.text.toString().toInt()
 
-                val student: Student = db.readDataStudent(number, context)
+            val emailAddress = binding.emailEditTextFromForgot.text.toString()
 
-                if (name == student.name) {
-                    db.updateData(student.number, student.name, newPassword, context)
+            Firebase.auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("Firebase", "Email sent.")
 
-                    Snackbar.make(
-                        binding.buttonChangePassword,
-                        "Şifre başarıyla değiştirildi.",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                        Snackbar.make(
+                            binding.buttonChangePassword,
+                            "Şifre değiştirme maili başarıyla gönderildi.",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
 
-                    val action =
-                        ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment()
-                    Navigation.findNavController(it).navigate(action)
-                } else {
-                    Snackbar.make(
-                        binding.buttonChangePassword,
-                        "Numara ve isim eşleşmiyor.",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                    binding.newPasswordEditTextFromForgot.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                        val action =
+                            ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment()
+                        Navigation.findNavController(it).navigate(action)
+
+                    } else {
+                        Snackbar.make(
+                            binding.buttonChangePassword,
+                            "Kayıtlı kullanıcı bulunamadı.",
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        binding.emailEditTextFromForgot.onEditorAction(EditorInfo.IME_ACTION_DONE)
+                    }
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Snackbar.make(
-                    binding.buttonChangePassword,
-                    "Kayıtlı kullanıcı bulunamadı.",
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                binding.newPasswordEditTextFromForgot.onEditorAction(EditorInfo.IME_ACTION_DONE)
-            }
         }
     }
 

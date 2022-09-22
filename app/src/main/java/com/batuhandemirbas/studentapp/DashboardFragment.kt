@@ -9,13 +9,23 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.databinding.FragmentDashboardBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
+    private lateinit var auth: FirebaseAuth
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // Initialize Firebase Auth
+        auth = Firebase.auth
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,15 +39,16 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-        arguments?.let {
-            val number = DashboardFragmentArgs.fromBundle(it).number
-            val db = DatabaseHelper(context)
-            val student = db.readDataStudent(number, context)
-            binding.textView.text =
-                "Merhaba ${student.name},\nlütfen hangi işlemi yapacağına karar ver."
-        } */
+        val currentStudent = auth.currentUser
 
+        currentStudent?.let {
+            // Name, email address, and profile photo Url
+            val name = currentStudent.displayName
+            val email = currentStudent.email
+
+            binding.textView.text =
+                "Merhaba ${email},lütfen hangi işlemi yapacağına karar ver."
+        }
 
         // Derslerim butonuna tıklandığında yapılacaklar
         binding.buttonLesson.setOnClickListener {
@@ -65,6 +76,13 @@ class DashboardFragment : Fragment() {
             val actionToMapFragment =
                 DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
             Navigation.findNavController(it).navigate(actionToMapFragment)
+        }
+
+        // Çıkış yap butonuna basıldığında yapılacaklar
+        binding.buttonExit.setOnClickListener {
+            Firebase.auth.signOut()
+            val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
+            Navigation.findNavController(it).navigate(action)
         }
     }
 

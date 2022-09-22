@@ -11,6 +11,7 @@ import com.batuhandemirbas.studentapp.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
 class RegisterFragment : Fragment() {
@@ -59,12 +60,13 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun signUpFirebase(email: String, password: String, view: View,) {
+    private fun signUpFirebase(email: String, password: String, view: View) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
+
                     // Snackbar message
                     Snackbar.make(view, "Başarıyla kayıt oldunuz.", Snackbar.LENGTH_SHORT).show()
                     binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
@@ -72,6 +74,7 @@ class RegisterFragment : Fragment() {
                     // Action to LoginFragment
                     val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
                     Navigation.findNavController(view).navigate(action)
+
                 } else {
                     // Snackbar message
                     Snackbar.make(view, "Kayıt olamadınız.", Snackbar.LENGTH_SHORT).show()
