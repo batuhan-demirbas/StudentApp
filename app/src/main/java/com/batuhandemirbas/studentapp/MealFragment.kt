@@ -12,9 +12,8 @@ import com.google.firebase.ktx.Firebase
 
 class MealFragment : Fragment() {
 
+    /** This property is only valid between onCreateView and onDestroyView */
     private var _binding: FragmentMealBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,6 +30,7 @@ class MealFragment : Fragment() {
 
         val db = Firebase.firestore
 
+        // Data pulls from Firebase Firestore
         db.collection("meals")
             .get()
             .addOnSuccessListener { result ->
@@ -38,7 +38,8 @@ class MealFragment : Fragment() {
                     binding.meal1.text = document.data.toString()
                 }
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener {
+                // If read data fails, display a message to the user
                 Snackbar.make(view, "Başarısız", Snackbar.LENGTH_SHORT).show()
             }
     }

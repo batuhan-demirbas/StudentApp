@@ -1,6 +1,7 @@
 package com.batuhandemirbas.studentapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import com.batuhandemirbas.studentapp.databinding.FragmentRegisterBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 
 class RegisterFragment : Fragment() {
@@ -66,6 +66,13 @@ class RegisterFragment : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
+
+                    user!!.sendEmailVerification()
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Log.d("Firebase", "Email verification sent.")
+                            }
+                        }
 
                     // Snackbar message
                     Snackbar.make(view, "Başarıyla kayıt oldunuz.", Snackbar.LENGTH_SHORT).show()

@@ -8,41 +8,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.navigation.Navigation
-import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.databinding.FragmentForgotPasswordBinding
-import com.batuhandemirbas.studentapp.model.Student
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class ForgotPasswordFragment : Fragment() {
 
-    private var _binding: FragmentForgotPasswordBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    /** This property is only valid between onCreateView and onDestroyView */
     private val binding get() = _binding!!
+    private var _binding: FragmentForgotPasswordBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //
         binding.buttonChangePassword.setOnClickListener {
-
             val emailAddress = binding.emailEditTextFromForgot.text.toString()
 
+            // Firebase user password reset email sending processes
             Firebase.auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        // If send email succes, display a message to the user
                         Log.d("Firebase", "Email sent.")
 
                         Snackbar.make(
@@ -51,11 +48,13 @@ class ForgotPasswordFragment : Fragment() {
                             Snackbar.LENGTH_SHORT
                         ).show()
 
+                        // Navigate to login fragment
                         val action =
                             ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToLoginFragment()
                         Navigation.findNavController(it).navigate(action)
 
                     } else {
+                        // If send mail fails, display a message to the user
                         Snackbar.make(
                             binding.buttonChangePassword,
                             "Kayıtlı kullanıcı bulunamadı.",

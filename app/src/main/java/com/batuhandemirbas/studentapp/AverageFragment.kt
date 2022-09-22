@@ -10,20 +10,21 @@ import com.batuhandemirbas.studentapp.databinding.FragmentAverageBinding
 
 class AverageFragment : Fragment() {
 
+    /** This property is only valid between onCreateView and onDestroyView */
     private var _binding: FragmentAverageBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        // Inflate the layout for this fragment
         _binding = FragmentAverageBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         var vize: Int
         var final: Int
         var average: Double
@@ -35,6 +36,7 @@ class AverageFragment : Fragment() {
 
             binding.textViewResult.apply {
                 visibility = View.VISIBLE
+
                 if (average >= 50 && final >= 50) {
                     text = "Sonuç: $average, geçtiniz :)"
                     setTextColor(Color.GREEN)
@@ -44,9 +46,6 @@ class AverageFragment : Fragment() {
                 }
             }
         }
-        // Inflate the layout for this fragment
-
-        return view
     }
 
     override fun onDestroyView() {

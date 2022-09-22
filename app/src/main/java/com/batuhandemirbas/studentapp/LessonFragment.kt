@@ -11,10 +11,9 @@ import com.batuhandemirbas.studentapp.data.DataSource
 import com.batuhandemirbas.studentapp.databinding.FragmentLessonBinding
 
 class LessonFragment : Fragment() {
-    private var _binding: FragmentLessonBinding? = null
 
-    // This property is only valid between onCreateView and
-// onDestroyView.
+    /** This property is only valid between onCreateView and onDestroyView */
+    private var _binding: FragmentLessonBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,7 +22,11 @@ class LessonFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLessonBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val myLessonList = DataSource().loadLesson()
         val layoutManager = LinearLayoutManager(context)
@@ -31,8 +34,6 @@ class LessonFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = LessonAdapter(myLessonList)
         recyclerView.setHasFixedSize(true)
-
-        return view
     }
 
     override fun onDestroyView() {

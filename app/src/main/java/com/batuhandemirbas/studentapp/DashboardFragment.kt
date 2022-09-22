@@ -1,13 +1,11 @@
 package com.batuhandemirbas.studentapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.batuhandemirbas.studentapp.data.DatabaseHelper
 import com.batuhandemirbas.studentapp.databinding.FragmentDashboardBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -41,48 +39,60 @@ class DashboardFragment : Fragment() {
 
         val currentStudent = auth.currentUser
 
+        //
         currentStudent?.let {
             // Name, email address, and profile photo Url
-            val name = currentStudent.displayName
             val email = currentStudent.email
 
-            binding.textView.text =
-                "Merhaba ${email},lütfen hangi işlemi yapacağına karar ver."
+            if (email != null) {
+                binding.textView.text =
+                    "Merhaba ${email.split("@")[0]},lütfen hangi işlemi yapacağına karar ver."
+            }
         }
 
-        // Derslerim butonuna tıklandığında yapılacaklar
-        binding.buttonLesson.setOnClickListener {
-            val actionToLessonFragment =
-                DashboardFragmentDirections.actionDashboardFragmentToLessonFragment()
-            Navigation.findNavController(it).navigate(actionToLessonFragment)
-        }
+        with(binding) {
 
-        // Ortalama butonuna basıldığında yapılacaklar
-        binding.buttonAverage.setOnClickListener {
-            val actionToAverageFragment =
-                DashboardFragmentDirections.actionDashboardFragmentToAverageFragment()
-            Navigation.findNavController(it).navigate(actionToAverageFragment)
-        }
+            // Lesson button
+            buttonLesson.setOnClickListener {
+                // Navigate to lesson fragment
+                val actionToLessonFragment =
+                    DashboardFragmentDirections.actionDashboardFragmentToLessonFragment()
+                Navigation.findNavController(it).navigate(actionToLessonFragment)
+            }
 
-        // Yemekhane butonuna basıldığında yapılacaklar
-        binding.buttonMeal.setOnClickListener {
-            val actionToMealFragment =
-                DashboardFragmentDirections.actionDashboardFragmentToMealFragment()
-            Navigation.findNavController(it).navigate(actionToMealFragment)
-        }
+            // Average button
+            buttonAverage.setOnClickListener {
+                // Navigate to Average fragment
+                val actionToAverageFragment =
+                    DashboardFragmentDirections.actionDashboardFragmentToAverageFragment()
+                Navigation.findNavController(it).navigate(actionToAverageFragment)
+            }
 
-        // Kampüsü gör butonuna basıldığında yapılacaklar
-        binding.buttonMap.setOnClickListener {
-            val actionToMapFragment =
-                DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
-            Navigation.findNavController(it).navigate(actionToMapFragment)
-        }
+            // Meal button
+            buttonMeal.setOnClickListener {
+                // Navigate to meal fragment
+                val actionToMealFragment =
+                    DashboardFragmentDirections.actionDashboardFragmentToMealFragment()
+                Navigation.findNavController(it).navigate(actionToMealFragment)
+            }
 
-        // Çıkış yap butonuna basıldığında yapılacaklar
-        binding.buttonExit.setOnClickListener {
-            Firebase.auth.signOut()
-            val action = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
-            Navigation.findNavController(it).navigate(action)
+            // Map button
+            buttonMap.setOnClickListener {
+                // Navigate to map fragment
+                val actionToMapFragment =
+                    DashboardFragmentDirections.actionDashboardFragmentToMapFragment()
+                Navigation.findNavController(it).navigate(actionToMapFragment)
+            }
+
+            // Sign out button
+            buttonSignOut.setOnClickListener {
+                // Current user sign out
+                Firebase.auth.signOut()
+
+                // Navigate to login fragment
+                val actionToLoginFragment = DashboardFragmentDirections.actionDashboardFragmentToLoginFragment()
+                Navigation.findNavController(it).navigate(actionToLoginFragment)
+            }
         }
     }
 
