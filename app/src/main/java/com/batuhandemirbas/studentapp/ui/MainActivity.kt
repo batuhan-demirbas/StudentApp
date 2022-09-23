@@ -1,4 +1,4 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

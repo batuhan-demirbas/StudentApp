@@ -1,15 +1,15 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui.register
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.databinding.FragmentRegisterBinding
-import com.google.android.material.snackbar.Snackbar
+import com.batuhandemirbas.studentapp.util.extensions.showSnackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -54,7 +54,7 @@ class RegisterFragment : Fragment() {
 
             } else {
                 // Not cheked snackbar message
-                Snackbar.make(it, "Lütfen sözleşmeyi onaylayınız.", Snackbar.LENGTH_SHORT).show()
+                view.showSnackbar("Lütfen sözleşmeyi onaylayınız.")
                 binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
             }
         }
@@ -75,7 +75,7 @@ class RegisterFragment : Fragment() {
                         }
 
                     // Snackbar message
-                    Snackbar.make(view, "Başarıyla kayıt oldunuz.", Snackbar.LENGTH_SHORT).show()
+                    view.showSnackbar("Başarıyla kayıt oldunuz.")
                     binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
 
                     // Action to LoginFragment
@@ -84,7 +84,7 @@ class RegisterFragment : Fragment() {
 
                 } else {
                     // Snackbar message
-                    Snackbar.make(view, "Kayıt olamadınız.", Snackbar.LENGTH_SHORT).show()
+                    view.showSnackbar("Başarıyla kayıt oldunuz.")
                     binding.passwordTextField.onEditorAction(EditorInfo.IME_ACTION_DONE)
                 }
             }

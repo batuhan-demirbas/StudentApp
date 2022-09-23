@@ -1,11 +1,11 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui.map
 
-import androidx.fragment.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import com.batuhandemirbas.studentapp.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -22,11 +22,11 @@ class MapFragment : Fragment() {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(eem, 15f))
 
         // Yemekhane show map Latitude - Longitude
-        val yemekhane = LatLng(40.2248062,28.870331)
+        val yemekhane = LatLng(40.2248062, 28.870331)
         googleMap.addMarker(MarkerOptions().position(yemekhane).title("Öğrenci Yemekhanesi"))
 
         // Metro show map Latitude - Longitude
-        val metro = LatLng(40.2190319,28.8691081)
+        val metro = LatLng(40.2190319, 28.8691081)
         googleMap.addMarker((MarkerOptions().position(metro).title("Üniversite Metro Durağı")))
 
     }

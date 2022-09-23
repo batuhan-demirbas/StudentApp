@@ -1,4 +1,4 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui.login
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.databinding.FragmentLoginBinding
-import com.google.android.material.snackbar.Snackbar
+import com.batuhandemirbas.studentapp.util.extensions.showSnackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -89,7 +89,7 @@ class LoginFragment : Fragment() {
                     // If sign in fails, display a message to the user
                     Log.w("FirebaseAuth", "signInWithEmail:failure", task.exception)
 
-                    Snackbar.make(view, "Geçersiz kullanıcı bilgileri.", Snackbar.LENGTH_SHORT).show()
+                    view.showSnackbar("Geçersiz kullanıcı bilgisi girdiniz.")
                     binding.passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
                 }
             }

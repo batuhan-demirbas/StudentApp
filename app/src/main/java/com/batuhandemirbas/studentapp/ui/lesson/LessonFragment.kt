@@ -1,4 +1,4 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui.lesson
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.batuhandemirbas.studentapp.adapter.LessonAdapter
+import com.batuhandemirbas.studentapp.ui.lesson.adapter.LessonAdapter
 import com.batuhandemirbas.studentapp.data.DataSource
 import com.batuhandemirbas.studentapp.databinding.FragmentLessonBinding
 

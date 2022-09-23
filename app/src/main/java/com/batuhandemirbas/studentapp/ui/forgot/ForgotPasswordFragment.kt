@@ -1,15 +1,15 @@
-package com.batuhandemirbas.studentapp
+package com.batuhandemirbas.studentapp.ui.forgot
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.batuhandemirbas.studentapp.databinding.FragmentForgotPasswordBinding
-import com.google.android.material.snackbar.Snackbar
+import com.batuhandemirbas.studentapp.util.extensions.showSnackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -42,11 +42,7 @@ class ForgotPasswordFragment : Fragment() {
                         // If send email succes, display a message to the user
                         Log.d("Firebase", "Email sent.")
 
-                        Snackbar.make(
-                            binding.buttonChangePassword,
-                            "Şifre değiştirme maili başarıyla gönderildi.",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        view.showSnackbar("Şifre değiştirme maili başarıyla gönderildi.")
 
                         // Navigate to login fragment
                         val action =
@@ -55,11 +51,7 @@ class ForgotPasswordFragment : Fragment() {
 
                     } else {
                         // If send mail fails, display a message to the user
-                        Snackbar.make(
-                            binding.buttonChangePassword,
-                            "Kayıtlı kullanıcı bulunamadı.",
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        view.showSnackbar("Kayıtlı kullanıcı bulunamadı.")
                         binding.emailEditTextFromForgot.onEditorAction(EditorInfo.IME_ACTION_DONE)
                     }
                 }

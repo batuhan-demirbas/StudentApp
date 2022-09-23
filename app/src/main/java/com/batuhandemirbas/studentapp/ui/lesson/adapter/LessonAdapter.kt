@@ -1,4 +1,4 @@
-package com.batuhandemirbas.studentapp.adapter
+package com.batuhandemirbas.studentapp.ui.lesson.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

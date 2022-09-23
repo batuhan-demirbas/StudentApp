@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/lessonFragment"
-        android:name="com.batuhandemirbas.studentapp.LessonFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.lesson.LessonFragment"
         android:label="fragment_lesson"
         tools:layout="@layout/fragment_lesson" />
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.batuhandemirbas.studentapp.DashboardFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" >
         <action
@@ -49,17 +49,17 @@
     </fragment>
     <fragment
         android:id="@+id/averageFragment"
-        android:name="com.batuhandemirbas.studentapp.AverageFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.average.AverageFragment"
         android:label="fragment_average"
         tools:layout="@layout/fragment_average" />
     <fragment
         android:id="@+id/mealFragment"
-        android:name="com.batuhandemirbas.studentapp.MealFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.meal.MealFragment"
         android:label="fragment_meal"
         tools:layout="@layout/fragment_meal" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.batuhandemirbas.studentapp.LoginFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -86,7 +86,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.batuhandemirbas.studentapp.RegisterFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.register.RegisterFragment"
         android:label="Kayıt Ol"
         tools:layout="@layout/fragment_register" >
         <action
@@ -99,7 +99,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.batuhandemirbas.studentapp.ForgotPasswordFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.forgot.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" >
         <action
@@ -112,7 +112,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.batuhandemirbas.studentapp.MapFragment"
+        android:name="com.batuhandemirbas.studentapp.ui.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
 </navigation>
