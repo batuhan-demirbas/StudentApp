@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:orientation="horizontal">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/lessonVize"
                     android:layout_width="wrap_content"
@@ -59,6 +60,7 @@
                     android:text="Vize: 55"
                     style="?attr/borderlessButtonStyle"
                     />
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/lessonFinal"
                     android:layout_width="wrap_content"

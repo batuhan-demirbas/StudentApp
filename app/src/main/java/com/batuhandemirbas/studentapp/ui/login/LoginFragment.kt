@@ -1,18 +1,29 @@
 package com.batuhandemirbas.studentapp.ui.login
 
+import android.app.Activity
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context.NOTIFICATION_SERVICE
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.batuhandemirbas.studentapp.R
 import com.batuhandemirbas.studentapp.databinding.FragmentLoginBinding
 import com.batuhandemirbas.studentapp.util.extensions.showSnackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import io.grpc.Context
 
 
 class LoginFragment : Fragment() {
@@ -24,7 +35,7 @@ class LoginFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
         // Initialize Firebase Auth
         auth = Firebase.auth
 
@@ -50,6 +61,20 @@ class LoginFragment : Fragment() {
                 val email = binding.numberEditText.text.toString()
                 val password = binding.passwordEditText.text.toString()
 
+                val notificationBuilder = NotificationCompat.Builder(requireActivity(), "1")
+                    .setSmallIcon(androidx.loader.R.drawable.notification_bg)
+                    .setContentTitle("Test Bildirimi")
+                    .setContentText("Bu bir test bildirimidir. Dikkate almayınız.")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                createNotificationChannel()
+
+                with(NotificationManagerCompat.from(requireActivity())) {
+                    notify(1, notificationBuilder.build())
+                }
+
+
+
                 // Signing in with Firebase Email
                 signIn(email, password, view)
             }
@@ -69,6 +94,23 @@ class LoginFragment : Fragment() {
                 val action = LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment()
                 Navigation.findNavController(it).navigate(action)
             }
+        }
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "loginNotification"
+            val descriptionText = "Notification description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("1", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                context?.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 
